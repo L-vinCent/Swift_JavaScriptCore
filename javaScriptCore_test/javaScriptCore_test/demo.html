@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<style>
+		.btn-style {
+			display: block;
+			height: 45px;
+			line-height: 45px;
+    		margin: 10px auto;
+            color: #000000;
+    		background: #E6E6FA;
+    		border-radius: 10px;
+		    text-align: center;
+		    text-decoration: none;
+		   	font-size: 14px;
+		}
+    
+        .content {
+            text-align: center;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+	</style>
+</head>
+<body>
+    
+    <br><br><br>
+
+	<div class="btn-style" onclick="WebViewJSBridge.wxPay('PP20170327')">
+        js 调用 App wxPay()
+    </div>
+
+    
+    
+	<div class="btn-style" onclick="WebViewJSBridge.wxShare({
+            'title' : '测试标题',
+            'description' : '测试内容',
+        })">js调用App的wxShare()</div>
+  
+    
+    
+    <div class="btn-style" onclick="WebViewJSBridge.showDMessage({'title' : ' 测标题'}, '测试内容')">
+        js调用App，传递多个参数
+    </div>
+    
+    
+    <div class="btn-style" onclick="WebViewJSBridge.callHandler('jsHandlerFunc')">
+        js调用App的方法后 App再调用js函数修改doc内容
+    </div>
+    <div class="content" id="js-content">App调用js函数执行回调,这里的内容会改变</div>
+
+ 
+
+
+    <script type="text/javascript">
+    
+
+    function jsHandlerFunc(argument) {
+        
+            document.getElementById('js-content').innerHTML = "App调用了js的回调函数，我是" + argument['name'];
+        }
+   
+   
+   
+    
+    
+    </script>
+    
+    
+    
+	
+</body>
+</html>
